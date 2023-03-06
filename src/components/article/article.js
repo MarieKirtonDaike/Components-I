@@ -118,14 +118,14 @@ const data = [
 */
 
 
-function articleMaker (data, index){
+function articleMaker (art){
   const article = document.createElement("div")
-  article.classList = "article"
+  article.classList.add("article")
   const title = document.createElement("h2")
-  title.textContent = data[index].title
+  title.textContent = art.title
   const paragraphdate = document.createElement("p")
-  paragraphdate.classList = "date"
-  paragraphdate.textContent = data[index].date
+  paragraphdate.classList.add("date")
+  paragraphdate.textContent = art.date
   article.appendChild(title)
   article.appendChild(paragraphdate)
 
@@ -134,9 +134,9 @@ function articleMaker (data, index){
   const p2 = document.createElement("p")
   const p3 = document.createElement("p")
 
-  p1.textContent = data[index].firstParagraph
-  p2.textContent = data[index].secondParagraph
-  p3.textContent = data[index].thirdParagraph
+  p1.textContent = art.firstParagraph
+  p2.textContent = art.secondParagraph
+  p3.textContent = art.thirdParagraph
 
   article.appendChild(p1)
   article.appendChild(p2)
@@ -144,8 +144,8 @@ function articleMaker (data, index){
 
   const span = document.createElement("span")
   span.textContent = "+"
-  span.classList = "expandButton"
-  span.addEventListener("click", (event) => {event.target.classList.toggle("article-open")})
+  span.classList.add("expandButton") 
+  span.addEventListener("click", (event) => {article.classList.toggle("article-open")})
 
   article.appendChild(span)
   
@@ -153,10 +153,11 @@ function articleMaker (data, index){
   
 }
 
-      const lastdiv = document.querySelector(".articles")
-     for (let i = 0; i < data.length; i++){
-      lastdiv.appendChild(articleMaker(data,i))
-     }
-      
      
+let container = document.querySelector(".articles")
 
+for (let article of data){
+  const artdata = articleMaker(article)
+  container.appendChild(artdata)
+
+}
